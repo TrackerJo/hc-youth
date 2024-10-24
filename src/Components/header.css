@@ -1,0 +1,40 @@
+.header {
+  padding: 10px 16px;
+  background: white;
+  color: #209d50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header img {
+  /* height: 60px; */
+  width: 50px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* padding-top: 102px; */
+}
+  
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 30px;
+}
+
+.sticky > .header-right {
+  
+}

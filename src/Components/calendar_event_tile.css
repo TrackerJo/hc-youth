@@ -1,0 +1,33 @@
+.event-tile{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+    flex: 0 0 300px;
+    background-color: white;
+    color: var(--primary);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.event-tile h3{
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.event-tile h4{
+    font-size: 1rem;
+    color: var(--primary);
+    margin-top: -10px;
+    font-weight: 400;
+}
+
+.event-tile p{
+    font-size: 1rem;
+    color: var(--primary);
+    margin-top: -5px;
+}
+

@@ -1,0 +1,48 @@
+.prayer-request-tile {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+
+}
+
+.prayer-request-tile h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+/* Add a fade and grow animation when becomes visible and a fade and shrink when isn't visible */
+.prayer-request-tile.active {
+    animation: fadeAndGrow 0.5s ease-out;
+}
+
+.prayer-request-tile.inactive {
+    animation: fadeAndShrink 0.5s ease-out forwards;
+}
+
+@media only screen and (max-width: 768px) {
+   .prayer-request-tile h3 {
+       font-size: 1rem;
+   }
+  }
+
+@keyframes fadeAndGrow {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeAndShrink {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
