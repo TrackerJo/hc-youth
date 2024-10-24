@@ -130,6 +130,7 @@ function App() {
   ])
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_API_KEY)
     const handleResize = () => {
       if (window.innerWidth < 800) {
           setIsMobile(true)

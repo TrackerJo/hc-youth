@@ -2,7 +2,7 @@ import { CalendarEvent } from "./constants";
 
 export function getCalendarEvents(calendarId: string): Promise<CalendarEvent[]> {
 
-    return fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=AIzaSyBQShcvcK7MSvfgDIIvde_bRDGaQo6YCdA`)
+    return fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${import.meta.env.VITE_API_KEY}`)
     .then(res => res.json())
     .then(data => {
         console.log(data);
