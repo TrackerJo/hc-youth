@@ -14,7 +14,7 @@ export default defineConfig({
       "@": resolve(__dirname, "./src"),
     },
   },
-  base: '/',
+  base: '/hc-youth/',
   build: {
     outDir,
     emptyOutDir: true,

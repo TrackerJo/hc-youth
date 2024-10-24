@@ -6,6 +6,9 @@ import BottomHeader from '../Components/bottom_header'
 import Slideshow from '../Components/slideshow'
 
 import "./middle_school.css"
+import CalendarEventTile from '../Components/calendar_event_tile'
+import { CalendarEvent, MiddleSchoolCalendarId } from '../constants'
+import { getCalendarEvents } from '../api'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,6 +18,22 @@ createRoot(document.getElementById('root')!).render(
 
 function App(){
     const [isMobile, setIsMobile] = useState(false)
+    const [events, setEvents] = useState<CalendarEvent[]>([])
+
+    useEffect(() => {
+        getCalendarEvents(MiddleSchoolCalendarId).then(data => {
+            console.log(data)
+            setEvents((oldData) => {
+              const formattedData = data.map((event) => {
+                return {
+                  ...event,
+                  type: ""
+                }
+              })
+              return [...formattedData]
+            })
+          })
+    }, [])
 
     useEffect(() => {
         const handleResize = () => {
@@ -40,6 +59,17 @@ function App(){
                     </div>
 
                     <Slideshow />
+                </div>
+                <div className='event-section'>
+                    <h2>Upcoming Events</h2>
+                    <div className='events'>
+                        {events.map((event) => {
+                        return (
+                            <CalendarEventTile event={event} />
+                        )
+                        })}
+                    </div>  
+                    
                 </div>
 
             </div>

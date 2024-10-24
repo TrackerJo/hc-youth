@@ -5,11 +5,12 @@ import './App.css'
 import Header from './Components/header'
 import Slideshow from './Components/slideshow'
 import { getCalendarEvents } from './api'
-import { CalendarEvent, HighSchoolCalendarId, PrayerRequest, Question } from './constants'
+import { AllCalendarId, CalendarEvent, HighSchoolCalendarId, MiddleSchoolCalendarId, PrayerRequest, Question, YoungAdultCalendarId } from './constants'
 import CalendarEventTile from './Components/calendar_event_tile'
 import PrayerRequestTile from './Components/prayer_request_tile'
 import QuestionTile from './Components/question_tile'
 import BottomHeader from './Components/bottom_header'
+import { get } from 'http'
 
 function App() {
   const [isMobile, setIsMobile] = useState(false)
@@ -140,18 +141,37 @@ function App() {
   }
   window.addEventListener('resize', handleResize)
   handleResize()
-    getCalendarEvents(HighSchoolCalendarId).then(data => {
-      console.log(data)
-      setEvents((oldData) => {
-        const formattedData = data.map((event) => {
-          return {
-            ...event,
-            type: "High School"
-          }
-        })
-        return [...formattedData]
-      })
+  async function getCalendarsEvents() {
+    const allEvents = await getCalendarEvents(AllCalendarId)
+    const highSchoolEvents = (await getCalendarEvents(HighSchoolCalendarId)).map((event) => {
+      return {
+        ...event,
+        type: "High School"
+      }
     })
+    const middleSchoolEvents = (await getCalendarEvents(MiddleSchoolCalendarId)).map((event) => {
+      return {
+        ...event,
+        type: "Middle School"
+      }
+    })
+
+    const youngAdultEvents = (await getCalendarEvents(YoungAdultCalendarId)).map((event) => {
+      return {
+        ...event,
+        type: "Young Adults"
+      }
+    })
+
+    const combinedEvents = [...allEvents, ...highSchoolEvents, ...middleSchoolEvents, ...youngAdultEvents]
+    combinedEvents.sort((a, b) => {
+      return a.start.getTime() - b.start.getTime()
+    })
+
+    setEvents(combinedEvents)
+  }
+  getCalendarsEvents()
+    
 
     //Set three random prayer requests to visible and the rest to invisible, and set their random positions based on their side every 5 seconds
     setInterval(() => {
@@ -236,17 +256,23 @@ function App() {
             <div>
                 <h3>High School</h3>
                 <p>Sundays<br/>7:00-8:15pm</p>
-                <button>More Info</button>
+                <button onClick={() => {
+                  window.location.href = "/hc-youth/HighSchool/"
+                }}>More Info</button>
             </div>
             <div>
                 <h3>Middle School</h3>
                 <p>1st & 3rd Sundays<br/>5:00-6:00pm</p>
-                <button>More Info</button>
+                <button onClick={() => {
+                  window.location.href = "/hc-youth/MiddleSchool/"
+                }}>More Info</button>
             </div>
             <div>
                 <h3>Young Adults</h3>
                 <p>Wednesdays<br/>4:00-5:15pm</p>
-                <button>More Info</button>
+                <button onClick={() => {
+                  window.location.href = "/hc-youth/YoungAdults/"
+                }}>More Info</button>
             </div>
           </div>
           <div className='location'>

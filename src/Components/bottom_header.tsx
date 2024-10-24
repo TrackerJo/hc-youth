@@ -26,18 +26,18 @@ function BottomHeader() {
     return (
         <div ref={headerRef} className={"bottom-header " + (isSticky ? "sticky" : "")} id="myHeader">
            <div className="header-item" onClick={() => {
-                window.location.href = "/MiddleSchool/"
+                window.location.href = "/hc-youth/MiddleSchool/"
            }}>
                 <h3>Middle School</h3>
            </div>
             <div className="header-item" onClick={() => {
-                window.location.href = "/HighSchool/"
+                window.location.href = "/hc-youth/HighSchool/"
            }}>
             <h3>High School</h3>  
             </div>
            
             <div className="header-item" onClick={() => {
-                window.location.href = "/YoungAdults/"
+                window.location.href = "/hc-youth/YoungAdults/"
            }}>
             <h3>Young Adults</h3>
             </div>

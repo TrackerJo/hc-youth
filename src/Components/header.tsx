@@ -23,7 +23,7 @@ function Header() {
     return (
         <div ref={headerRef} className={"header " + (isSticky ? "sticky" : "")} id="myHeader">
             <div className="header-left" onClick={() => {
-                window.location.href = "/"
+                window.location.href = "/hc-youth/"
             }}>
                 <img src={Logo} alt="" />
                 <h2>Holy Cross Youth</h2>
@@ -31,15 +31,15 @@ function Header() {
             <div className="header-right">
                 <Dropdown title="Middle School" onClick={() => {
 
-                    window.location.href = "/MiddleSchool/"
+                    window.location.href = "/hc-youth/MiddleSchool/"
                 }} links={[
                     {title: "Events", onClick: () => {}},
                 ]}/>
                 <Dropdown title="High School" onClick={() => {
-                    window.location.href = "/HighSchool/"
+                    window.location.href = "/hc-youth/HighSchool/"
                 }} links={[]}/>
                 <Dropdown title="Young Adults" onClick={() => {
-                    window.location.href = "/YoungAdults/"
+                    window.location.href = "/hc-youth/YoungAdults/"
                 }}  links={[]}/>
             </div>
             

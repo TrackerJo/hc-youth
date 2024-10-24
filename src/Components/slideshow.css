@@ -6,6 +6,12 @@
     background-color: #cdcdcd;
 }
 
+@media only screen and (max-width: 768px) {
+    .carousel {
+        height: 300px;
+    }
+}
+
 .carousel-item .slide-image {
     width:  100%;
     height: 100%;

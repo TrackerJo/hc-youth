@@ -76,3 +76,23 @@ button:focus-visible {
     height: 70px !important;
   }
 }
+
+@media only screen and (max-width: 768px) {
+
+  .title-section {
+    height: 300px !important;
+  }
+
+  .title-div p{
+    margin-top: -20px !important;
+    padding-bottom: 20px !important;
+  }
+
+
+  body{
+    overflow-x: hidden !important;
+  }
+
+  
+  
+}
