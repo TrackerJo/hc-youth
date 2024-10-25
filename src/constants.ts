@@ -45,6 +45,10 @@ export type QuestionTileProps = {
     question: Question;
 }
 
+export type BottomHeaderProps = {
+    location: string;
+}
+
 export const HighSchoolCalendarId = "e2310d92f373f154fe8d650c2bc7a7edd9b33601de36e05465ac2910d9ea8384@group.calendar.google.com"
 export const MiddleSchoolCalendarId = "2f74d93bc21ed82bf709a7a5bd6613ae3ac4f99838a39d5f10ea7c2cc0729a48@group.calendar.google.com"
 export const YoungAdultCalendarId = "cdaf8da5a6fd1d90bc07b7d3bfec33f05ebc968381116858e9c8a185d25dd189@group.calendar.google.com"

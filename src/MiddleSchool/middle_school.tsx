@@ -74,7 +74,7 @@ function App(){
 
             </div>
             {isMobile && <div className="mobile-footer"/>}
-            {isMobile && <BottomHeader />}
+            {isMobile && <BottomHeader location='MiddleSchool' />}
         </>
     )
 }

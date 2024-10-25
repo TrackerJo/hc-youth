@@ -16,6 +16,8 @@
     border-top-right-radius: 10px;
     /* add depth */
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    width: 95vw;
+    
 
   }
 
@@ -24,6 +26,13 @@
     color: white;
     font-weight: bold;
     text-align: center;
+    width: 100%;
+    
 
+  }
+
+  .header-item img {
+    width: 30px;
+    height: 30px;
   }
   

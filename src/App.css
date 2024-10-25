@@ -162,6 +162,12 @@
     flex-direction: column !important;
   }
 
+  .times {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    width: 80vw !important;
+  }
+
   .title-section {
     height: 300px !important;
   }
