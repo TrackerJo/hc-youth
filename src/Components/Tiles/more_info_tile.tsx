@@ -1,5 +1,5 @@
 import "./more_info_tile.css";
-import { MoreInfoTileProps } from "../constants";
+import { MoreInfoTileProps } from "../../constants";
 
 function MoreInfoTile({moreInfo} : MoreInfoTileProps){
     return (

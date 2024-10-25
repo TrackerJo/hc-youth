@@ -7,8 +7,8 @@ import Header from './Components/header'
 import { getCalendarEvents } from './api'
 import { AllCalendarId, CalendarEvent, HighSchoolCalendarId, MiddleSchoolCalendarId, PrayerRequest, Question, YoungAdultCalendarId, YouthInfo } from './constants'
 
-import PrayerRequestTile from './Components/prayer_request_tile'
-import QuestionTile from './Components/question_tile'
+import PrayerRequestTile from './Components/Tiles/prayer_request_tile'
+import QuestionTile from './Components/Tiles/question_tile'
 import BottomHeader from './Components/bottom_header'
 
 import TitleSection from './Components/Sections/title_section'
@@ -141,6 +141,9 @@ function App() {
 
   const [youthInfo, setYouthInfo] = useState<YouthInfo | null>(null)
 
+  function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
   useEffect(() => {
     getYouthInfo().then((info) => {
       setYouthInfo(info)
@@ -157,12 +160,24 @@ function App() {
           if(sides[sideI] === "left"){
             top = 30
             left = 10
+            if(isMobile){
+              top = 80
+              left = 10
+            }
           } else if(sides[sideI] === "right"){
             top = 150
             left = 80
+            if(isMobile){
+              top = 300
+              left = 10
+            }
           } else {
             top = 100
             left = 40
+            if(isMobile){
+              top = 200
+              left = 10
+            }
           }
         }
         formattedPrayerRequests.push({
@@ -242,20 +257,20 @@ function App() {
 
             request.left = Math.random() * 10
             if(isMobile) {
-              //top from 10 to 20
-              request.top = 50 + Math.random() * 80
-              //left from 10 to 90
-              request.left = 5 + Math.random() * 50
+             //Set top from 80 to 120
+              request.top = randomIntFromInterval(80, 120)
+              //Set left from 0 to 80
+              request.left = randomIntFromInterval(0, 50)
 
             }
           } else if(request.side === "right"){
             request.top = Math.random() * 150
             request.left = 80 - Math.random() * 10
             if(isMobile) {
-              //top from 10 to 20
-              request.top = 120 + Math.random() * 130
+              //top from 200 to 280
+              request.top = randomIntFromInterval(300, 360)
               //left from 10 to 90
-              request.left = 40 + Math.random() * 60
+              request.left = randomIntFromInterval(0, 50)
               // request.request = "Mobile Request"
 
             }
@@ -265,10 +280,10 @@ function App() {
             request.top = 50 +Math.random() * 190
             request.left = 45 - Math.random() * 10
             if(isMobile) {
-              //top from 10 to 20
-              request.top = 180 + Math.random() * 190
+              //top from 320 to 400
+              request.top = randomIntFromInterval(190, 240)
               //left from 10 to 90
-              request.left = 10 + Math.random() * 60
+              request.left = randomIntFromInterval(0, 50)
 
             }
           }
@@ -294,7 +309,7 @@ function App() {
         <WhenWhereSection type='All'/>
         <EventSection events={events} calendarType='All'/>
         <PrayersSection requests={prayerRequests}/>
-        <QuestionsSection questions={questions}/>
+        <QuestionsSection questions={questions} />
       </div>
       {isMobile && <div className="mobile-footer"/>
       }

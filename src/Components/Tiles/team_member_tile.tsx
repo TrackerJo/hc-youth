@@ -1,7 +1,7 @@
 import "./team_member_tile.css";
-import { TeamMemberTileProps } from "../constants";
-import Loesel from "../assets/loesel.png";
-import Slide1 from "../assets/slide_1.jpg";
+import { TeamMemberTileProps } from "../../constants";
+
+
 
 
 

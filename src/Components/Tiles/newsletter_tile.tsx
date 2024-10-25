@@ -1,5 +1,5 @@
 import "./newsletter_tile.css";
-import { NewsletterTileProps } from "../constants";
+import { NewsletterTileProps } from "../../constants";
 
 function NewsletterTile({newsletter}: NewsletterTileProps){
     return (

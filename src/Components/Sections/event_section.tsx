@@ -1,5 +1,5 @@
 import { AllCalendarLink, EventSectionProps, HighSchoolCalendarLink, MiddleSchoolCalendarLink, YoungAdultCalendarLink } from "../../constants";
-import CalendarEventTile from "../calendar_event_tile";
+import CalendarEventTile from "../Tiles/calendar_event_tile";
 import "./events_section.css";
 
 function EventSection({events, calendarType} : EventSectionProps) {

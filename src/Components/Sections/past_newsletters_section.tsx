@@ -1,7 +1,7 @@
 import "./past_newsletters_section.css";
 
 import { PastNewslettersSectionProps } from "../../constants";
-import NewsletterTile from "../newsletter_tile";
+import NewsletterTile from "../Tiles/newsletter_tile";
 
 
 function PastNewslettersSection({newsletters} : PastNewslettersSectionProps){

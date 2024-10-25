@@ -50,6 +50,7 @@ export type QuestionTileProps = {
 
 export type QuestionSectionProps = {
     questions: Question[];
+
 }
 
 export type BottomHeaderProps = {
@@ -148,6 +149,17 @@ export type MoreInfoSectionProps = {
 export type MoreInfoTileProps = {
     moreInfo: MoreInfo;
 }
+
+export type AskQuestionDialogProps = {
+    dialogRef: React.RefObject<HTMLDialogElement>;
+    onClose: () => void;
+}
+
+export type AddPrayerRequestDialogProps = {
+    dialogRef: React.RefObject<HTMLDialogElement>;
+    onClose: () => void;
+}
+
 
 export const HighSchoolCalendarId = "e2310d92f373f154fe8d650c2bc7a7edd9b33601de36e05465ac2910d9ea8384@group.calendar.google.com"
 export const MiddleSchoolCalendarId = "2f74d93bc21ed82bf709a7a5bd6613ae3ac4f99838a39d5f10ea7c2cc0729a48@group.calendar.google.com"

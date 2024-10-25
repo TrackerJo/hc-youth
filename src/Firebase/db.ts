@@ -141,3 +141,17 @@ export async function getYouthInfo(): Promise<YouthInfo>{
         prayerRequests: formattedPrayerRequests
     }
 }
+
+export async function askQuestion(question: string){
+   const infoDoc = doc(db,"youthInfo","info");
+    await updateDoc(infoDoc, {
+         questions: arrayUnion({question: question, answer: ""})
+    })
+}
+
+export async function addPrayerRequest(request: string){
+    const infoDoc = doc(db,"youthInfo","info");
+    await updateDoc(infoDoc, {
+        prayerRequests: arrayUnion(request)
+    })
+}

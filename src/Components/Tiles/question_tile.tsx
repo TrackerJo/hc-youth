@@ -1,6 +1,6 @@
 import "./question_tile.css";
 
-import { QuestionTileProps} from "../constants";
+import { QuestionTileProps} from "../../constants";
 
 function QuestionTile({question}: QuestionTileProps) {
     return (

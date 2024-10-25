@@ -1,6 +1,6 @@
 import "./more_info_section.css";
 import { MoreInfoSectionProps } from "../../constants";
-import MoreInfoTile from "../more_info_tile";
+import MoreInfoTile from "../Tiles/more_info_tile";
 
 
 function MoreInfoSection({moreInfos} : MoreInfoSectionProps){

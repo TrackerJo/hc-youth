@@ -1,6 +1,6 @@
 import "./calendar_event_tile.css";
 
-import { CalendarEvent, CalendarEventTileProps } from "../constants";
+import { CalendarEventTileProps } from "../../constants";
 
 function CalendarEventTile({event}: CalendarEventTileProps) {
     const timeOptions: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: '2-digit' };

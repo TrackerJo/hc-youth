@@ -6,7 +6,7 @@ import BottomHeader from '../Components/bottom_header'
 import Slideshow from '../Components/slideshow'
 
 import "./young_adults.css"
-import CalendarEventTile from '../Components/calendar_event_tile'
+import CalendarEventTile from '../Components/Tiles/calendar_event_tile'
 import { CalendarEvent, Newsletter, YoungAdultCalendarId, YoungAdultInfo } from '../constants'
 import { getCalendarEvents } from '../api'
 import NewsletterSection from '../Components/Sections/newsletter_section'

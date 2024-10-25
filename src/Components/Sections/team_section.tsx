@@ -2,7 +2,7 @@ import "./team_section.css";
 
 import { TeamSectionProps } from "../../constants";
 
-import TeamMemberTile from "../team_member_tile";
+import TeamMemberTile from "../Tiles/team_member_tile";
 
 function TeamSection({teamMembers} : TeamSectionProps){
     return (
