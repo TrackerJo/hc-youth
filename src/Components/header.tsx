@@ -33,7 +33,7 @@ function Header() {
 
                     window.location.href = "/hc-youth/MiddleSchool/"
                 }} links={[
-                    {title: "Events", onClick: () => {}},
+                    
                 ]}/>
                 <Dropdown title="High School" onClick={() => {
                     window.location.href = "/hc-youth/HighSchool/"

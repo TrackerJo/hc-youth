@@ -7,8 +7,16 @@ import Slideshow from '../Components/slideshow'
 
 import "./young_adults.css"
 import CalendarEventTile from '../Components/calendar_event_tile'
-import { CalendarEvent, YoungAdultCalendarId } from '../constants'
+import { CalendarEvent, Newsletter, YoungAdultCalendarId, YoungAdultInfo } from '../constants'
 import { getCalendarEvents } from '../api'
+import NewsletterSection from '../Components/Sections/newsletter_section'
+import EventSection from '../Components/Sections/event_section'
+import TitleSection from '../Components/Sections/title_section'
+import WhenWhereSection from '../Components/Sections/when_where_section'
+import PastNewslettersSection from '../Components/Sections/past_newsletters_section'
+import { getPastNewsletters, getYoungAdultInfo } from '../Firebase/db'
+import TeamSection from '../Components/Sections/team_section'
+import MoreInfoSection from '../Components/Sections/more_info_section'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +27,14 @@ createRoot(document.getElementById('root')!).render(
 function App(){
     const [isMobile, setIsMobile] = useState(false)
     const [events, setEvents] = useState<CalendarEvent[]>([])
+    const [newsletters, setNewsletters] = useState<Newsletter[]>([
+        {
+            title: "January 2021 Newsletter",
+            link: "https://example.com",
+            date: new Date(2021, 0, 1)
+        }
+    ])
+    const [youngAdultInfo, setYoungAdultInfo] = useState<null | YoungAdultInfo>(null)
 
     useEffect(() => {
         getCalendarEvents(YoungAdultCalendarId).then(data => {
@@ -33,6 +49,12 @@ function App(){
               return [...formattedData]
             })
           })
+          getPastNewsletters('YoungAdults').then(data => {
+            setNewsletters(data)
+        })
+        getYoungAdultInfo().then(data => {
+            setYoungAdultInfo(data)
+        })
     }, [])
 
     useEffect(() => {
@@ -51,26 +73,13 @@ function App(){
         <>
             {!isMobile && <Header />}
             <div className='content'>
-                <div className='title-section'>
-            
-                    <div className='title-div'>
-                        <h2>Young Adults Youth Group</h2>
-                        <p>Our Youth Groups are designed with students in mind, talking about real issues and applying Scripture in their everyday lives.</p>
-                    </div>
-
-                    <Slideshow />
-                </div>
-                <div className='event-section'>
-                    <h2>Upcoming Events</h2>
-                    <div className='events'>
-                        {events.map((event) => {
-                        return (
-                            <CalendarEventTile event={event} />
-                        )
-                        })}
-                    </div>  
-                    
-                </div>
+                <TitleSection title='Young Adults' description='Our Young Adult Group is a place for young adults to connect with others and grow in their faith.'/>
+                <WhenWhereSection type='YoungAdults'/>
+                <EventSection events={events} calendarType='YoungAdults'/>
+                <NewsletterSection type="YoungAdults"/>
+                <PastNewslettersSection newsletters={newsletters}/>
+                <MoreInfoSection moreInfos={youngAdultInfo?.moreInfo ?? []}/>
+                <TeamSection teamMembers={youngAdultInfo?.teamMembers ?? []}/>
 
             </div>
             {isMobile && <div className="mobile-footer"/>}

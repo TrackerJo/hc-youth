@@ -7,6 +7,8 @@
   color: black;
   /* create primary color var */
   --primary: #209d50;
+  --primary-light: #28b05e;
+  --primary-dark: #1d8645;
   background-color: white;
 
   font-synthesis: none;
@@ -48,13 +50,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -95,4 +90,60 @@ button:focus-visible {
 
   
   
+}
+
+
+input:focus {
+  outline: none;
+
+}
+
+button {
+  background-color:  var(--primary);
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+
+  box-sizing: border-box;
+  text-align: center;
+
+  text-decoration: none;
+  margin: 10px 0;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+
+}
+
+button:hover {
+  background-color: var(--primary-light);
+ 
+  border: 2px solid var(--primary);
+}
+
+button:focus {
+  outline: none;
+}
+
+.loader {
+  border: 7px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 7px solid var(--primary);
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+ 
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

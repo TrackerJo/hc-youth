@@ -7,8 +7,16 @@ import Slideshow from '../Components/slideshow'
 
 import "./middle_school.css"
 import CalendarEventTile from '../Components/calendar_event_tile'
-import { CalendarEvent, MiddleSchoolCalendarId } from '../constants'
+import { CalendarEvent, MiddleSchoolCalendarId, MiddleSchoolInfo, Newsletter } from '../constants'
 import { getCalendarEvents } from '../api'
+import EventSection from '../Components/Sections/event_section'
+import NewsletterSection from '../Components/Sections/newsletter_section'
+import TitleSection from '../Components/Sections/title_section'
+import WhenWhereSection from '../Components/Sections/when_where_section'
+import PastNewslettersSection from '../Components/Sections/past_newsletters_section'
+import { getMiddleSchoolInfo, getPastNewsletters } from '../Firebase/db'
+import TeamSection from '../Components/Sections/team_section'
+import MoreInfoSection from '../Components/Sections/more_info_section'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +27,14 @@ createRoot(document.getElementById('root')!).render(
 function App(){
     const [isMobile, setIsMobile] = useState(false)
     const [events, setEvents] = useState<CalendarEvent[]>([])
+    const [newsletters, setNewsletters] = useState<Newsletter[]>([
+        {
+            title: "January 2021 Newsletter",
+            link: "https://example.com",
+            date: new Date(2021, 0, 1)
+        }
+    ])
+    const [middleSchoolInfo, setMiddleSchoolInfo] = useState<null | MiddleSchoolInfo>(null)
 
     useEffect(() => {
         getCalendarEvents(MiddleSchoolCalendarId).then(data => {
@@ -33,6 +49,12 @@ function App(){
               return [...formattedData]
             })
           })
+          getPastNewsletters('MiddleSchool').then(data => {
+            setNewsletters(data)
+        })
+        getMiddleSchoolInfo().then(data => {
+            setMiddleSchoolInfo(data)
+        })
     }, [])
 
     useEffect(() => {
@@ -46,32 +68,19 @@ function App(){
         window.addEventListener('resize', handleResize)
         handleResize()
         return () => window.removeEventListener('resize', handleResize)
+        
     }, [])
     return (
         <>
             {!isMobile && <Header />}
             <div className='content'>
-                <div className='title-section'>
-            
-                    <div className='title-div'>
-                        <h2>Middle School Youth Group</h2>
-                        <p>Our Youth Groups are designed with students in mind, talking about real issues and applying Scripture in their everyday lives.</p>
-                    </div>
-
-                    <Slideshow />
-                </div>
-                <div className='event-section'>
-                    <h2>Upcoming Events</h2>
-                    <div className='events'>
-                        {events.map((event) => {
-                        return (
-                            <CalendarEventTile event={event} />
-                        )
-                        })}
-                    </div>  
-                    
-                </div>
-
+                <TitleSection title='Middle School' description='Our Middle School Youth Group is a place for middle school students to connect with others and grow in their faith.'/>
+                <WhenWhereSection type='MiddleSchool'/>
+                <EventSection events={events} calendarType='MiddleSchool' />
+                <NewsletterSection type="MiddleSchool"/>
+                <PastNewslettersSection newsletters={newsletters}/>
+                <MoreInfoSection moreInfos={middleSchoolInfo?.moreInfo ?? []}/>
+                <TeamSection teamMembers={middleSchoolInfo?.teamMembers ?? []}/>
             </div>
             {isMobile && <div className="mobile-footer"/>}
             {isMobile && <BottomHeader location='MiddleSchool' />}

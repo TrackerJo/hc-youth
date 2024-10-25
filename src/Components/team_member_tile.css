@@ -1,4 +1,4 @@
-.question-tile{
+.team-member-tile{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -6,7 +6,6 @@
     padding: 20px;
     margin: 20px 0;
     width: 300px;
-    /* height: 100%; */
     flex: 0 0 300px;
     background-color: white;
     color: var(--primary);
@@ -14,24 +13,28 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 
-.question-tile h3{
+.team-member-tile h3{
     font-size: 1.5rem;
     color: var(--primary);
 }
 
-.question-tile h4{
+.team-member-tile h4{
     font-size: 1rem;
     color: var(--primary);
     margin-top: -10px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
-@media only screen and (max-width: 768px) {
-  
-  
-    .question-tile{
-      flex: 0 0 200px !important;
-    }
-  
-  }
-  
+.team-member-tile p{
+    font-size: 1rem;
+    color: var(--primary);
+    margin-top: -5px;
+}
+
+.team-member-tile img{
+    /* width: 100%; */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+

@@ -1,0 +1,34 @@
+
+.where-section h2{
+    /* text-align: center; */
+    font-size: 2rem;
+    /* margin-top: 50px; */
+    /* margin-left: 10px; */
+    color: var(--primary);
+  }
+  
+ 
+  
+  .where-section {
+    background-color: white;
+    color: var(--primary);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  @media only screen and (max-width: 768px) {
+   
+  
+    .where-section iframe {
+      width: 100% !important;
+      height: 300px !important;
+    }
+  
+    
+  }
+  

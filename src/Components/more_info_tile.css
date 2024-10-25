@@ -1,0 +1,49 @@
+.more-info-tile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px 0;
+    width: 300px;
+    flex: 0 0 300px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.more-info-tile h3 {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.more-info-tile h4 {
+    font-size: 1rem;
+    color: white;
+    margin-top: -10px;
+    font-weight: 400;
+}
+
+.more-info-tile p {
+    font-size: 1rem;
+    color: white;
+    margin-top: -5px;
+}
+
+.more-info-tile button {
+    background-color: white;
+    color: var(--primary);
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 800;
+
+    border-radius: 5px;
+    width: 100px;
+}
+
+@media only screen and (max-width: 768px) {
+    .more-info-tile {
+        flex: 0 0 200px !important;
+    }
+}

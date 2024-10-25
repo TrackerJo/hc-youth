@@ -12,7 +12,10 @@ export function getCalendarEvents(calendarId: string): Promise<CalendarEvent[]> 
                 start: new Date(item.start.dateTime),
                 end: new Date(item.end.dateTime),
                 description: item.description,
-                type: ""
+                type: "",
+                eventId: item.id,
+                calendarId: calendarId,
+                eventLink: item.htmlLink
             }
         }
         )

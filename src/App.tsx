@@ -3,14 +3,22 @@ import { useEffect, useState } from 'react'
 
 import './App.css'
 import Header from './Components/header'
-import Slideshow from './Components/slideshow'
+
 import { getCalendarEvents } from './api'
-import { AllCalendarId, CalendarEvent, HighSchoolCalendarId, MiddleSchoolCalendarId, PrayerRequest, Question, YoungAdultCalendarId } from './constants'
-import CalendarEventTile from './Components/calendar_event_tile'
+import { AllCalendarId, CalendarEvent, HighSchoolCalendarId, MiddleSchoolCalendarId, PrayerRequest, Question, YoungAdultCalendarId, YouthInfo } from './constants'
+
 import PrayerRequestTile from './Components/prayer_request_tile'
 import QuestionTile from './Components/question_tile'
 import BottomHeader from './Components/bottom_header'
-import { get } from 'http'
+
+import TitleSection from './Components/Sections/title_section'
+
+
+import WhenWhereSection from './Components/Sections/when_where_section'
+import EventSection from './Components/Sections/event_section'
+import QuestionsSection from './Components/Sections/questions_section'
+import PrayersSection from './Components/Sections/prayers_section'
+import { getYouthInfo } from './Firebase/db'
 
 function App() {
   const [isMobile, setIsMobile] = useState(false)
@@ -78,6 +86,7 @@ function App() {
       answer: "The purpose of prayer is to communicate with God and grow closer to Him"
     },
   ])
+
   const [prayerRequests, setPrayerRequests] = useState<PrayerRequest[]>([
     {
       request: "Please pray for my family as we go through a difficult time",
@@ -130,8 +139,47 @@ function App() {
     }
   ])
 
+  const [youthInfo, setYouthInfo] = useState<YouthInfo | null>(null)
+
   useEffect(() => {
-    console.log(import.meta.env.VITE_API_KEY)
+    getYouthInfo().then((info) => {
+      setYouthInfo(info)
+      setQuestions(info.questions)
+      console.log(info)
+      const formattedPrayerRequests: PrayerRequest[] = [];
+      let sideI = 0;
+      let sides = ["left", "right", "middle"]
+      let visible = 0;
+      for(let i = 0; i < info.prayerRequests.length; i++){
+        let top = 0;
+        let left = 0;
+        if(visible < 3){
+          if(sides[sideI] === "left"){
+            top = 30
+            left = 10
+          } else if(sides[sideI] === "right"){
+            top = 150
+            left = 80
+          } else {
+            top = 100
+            left = 40
+          }
+        }
+        formattedPrayerRequests.push({
+          request: info.prayerRequests[i].request,
+          side: sides[sideI] as "left" | "right" | "middle",
+          visible: visible < 3,
+          top: top,
+          left: left,
+          id: i.toString()
+        })
+        sideI = (sideI + 1) % 3
+        visible++;
+      }
+      console.log(formattedPrayerRequests)
+      setPrayerRequests(formattedPrayerRequests)
+    })
+
     const handleResize = () => {
       if (window.innerWidth < 800) {
           setIsMobile(true)
@@ -242,88 +290,11 @@ function App() {
     <>
       {!isMobile && <Header /> }
       <div className="content">
-        <div className='title-section'>
-          
-          <div className='title-div'>
-            <h2>Holy Cross Youth Group</h2>
-            <p>Our Youth Groups are designed with students in mind, talking about real issues and applying Scripture in their everyday lives.</p>
-          </div>
-
-          <Slideshow />
-        </div>
-        <div className='where-section'>
-          <div className='when-section'>
-            <h2>When</h2>
-            <div className='times'>
-                
-                <div>
-                    <h3>High School</h3>
-                    <p>Sundays<br/>7:00-8:15pm</p>
-                    <button onClick={() => {
-                      window.location.href = "/hc-youth/HighSchool/"
-                    }}>More Info</button>
-                </div>
-                <div>
-                    <h3>Middle School</h3>
-                    <p>1st & 3rd Sundays<br/>5:00-6:00pm</p>
-                    <button onClick={() => {
-                      window.location.href = "/hc-youth/MiddleSchool/"
-                    }}>More Info</button>
-                </div>
-                <div>
-                    <h3>Young Adults</h3>
-                    <p>Wednesdays<br/>4:00-5:15pm</p>
-                    <button onClick={() => {
-                      window.location.href = "/hc-youth/YoungAdults/"
-                    }}>More Info</button>
-                </div>
-              </div>
-            </div>
-            <div className='location'>
-              
-            <h2>Where</h2>
-
-
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d573.533884756573!2d-85.11606616960097!3d41.1078769238141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8815e3007a45a663%3A0xb78cdd5a75a5e979!2sHoly%20Cross%20Youth%20Center!5e0!3m2!1sen!2sus!4v1729710413782!5m2!1sen!2sus" width="600" height="450" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          
-              
-        </div>
-        <div className='event-section'>
-          <h2>Upcoming Events</h2>
-          <div className='events'>
-            {events.map((event) => {
-              return (
-                <CalendarEventTile event={event} />
-              )
-            })}
-          </div>  
-          
-        </div>
-        <div className='prayers-section'>
-            <h2>Prayers</h2>
-            {/* <div className='prayers'> */}
-              {prayerRequests.map((prayerRequest) => {
-                
-
-                return (
-                <PrayerRequestTile request={prayerRequest} top={prayerRequest.top} left={prayerRequest.left} />
-                )
-              })}
-            {/* </div> */}
-            
-
-        </div>
-        <div className='questions-section'>
-          <h2>Questions</h2>
-          <div className='questions'>
-            {questions.map((question) => {
-              return (
-                <QuestionTile question={question} />
-              )
-            })}
-          </div>
-        </div>
+        <TitleSection title="Youth Group" description="Our Youth Groups are designed with students in mind, talking about real issues and applying Scripture in their everyday lives."/>
+        <WhenWhereSection type='All'/>
+        <EventSection events={events} calendarType='All'/>
+        <PrayersSection requests={prayerRequests}/>
+        <QuestionsSection questions={questions}/>
       </div>
       {isMobile && <div className="mobile-footer"/>
       }

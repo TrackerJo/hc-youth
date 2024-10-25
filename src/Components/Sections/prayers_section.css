@@ -1,0 +1,18 @@
+
+.prayers-section {
+    background-color: white;
+    color: var(--primary);
+    padding: 20px;
+    text-align: center;
+  
+    position: relative;
+    height: 400px;
+  }
+  
+  @media only screen and (max-width: 768px) {
+  
+    .prayers-section {
+      overflow: hidden !important;
+    }
+    
+  }
