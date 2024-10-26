@@ -420,3 +420,8 @@ export async function removeSubscriber(type: "HighSchool" | "MiddleSchool" | "Yo
         subscribers: arrayRemove(email)
     })
 }
+
+export async function checkAccessCode(accessCode: string): Promise<boolean>{
+    const accessCodeDoc = await getDoc(doc(db,"accessCodes",accessCode));
+    return accessCodeDoc.exists();
+}

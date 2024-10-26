@@ -12,6 +12,7 @@ import DashboardHeader from '../../Components/Headers/dashboard_header'
 import ManageMoreInfoSection from '../../Components/Sections/manage_more_info_section'
 import ManageTeamSection from '../../Components/Sections/manage_team_section'
 import ManageNewsletterSection from '../../Components/Sections/manage_newsletter_section'
+import { isUserLoggedIn } from '../../Firebase/auth'
 
 
 
@@ -27,10 +28,12 @@ function App(){
     const [isMobile, setIsMobile] = useState(false)
     const [highSchoolInfo, setHighSchoolInfo] = useState<null | HighSchoolInfo>(null)
     const [moreInfo, setMoreInfo] = useState<null | MoreInfo[]>([])
+    const [isLogged, setIsLogged] = useState(false)
     
    
 
     useEffect(() => {
+        isUserLoggedIn(setIsLogged)
         getHighSchoolInfo().then((info) => {
             setHighSchoolInfo(info)
             setMoreInfo(info?.moreInfo ?? [])

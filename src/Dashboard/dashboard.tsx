@@ -14,6 +14,7 @@ import TrashIcon from '../assets/trash_icon.png'
 import ManagePrayerRequestsSection from '../Components/Sections/manage_prayer_requests_section'
 import ManageQuestionsSection from '../Components/Sections/manage_questions_section'
 import ManageWhenSection from '../Components/Sections/manage_when_section'
+import { isUserLoggedIn, logout } from '../Firebase/auth'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -25,10 +26,13 @@ createRoot(document.getElementById('root')!).render(
 function App(){
     const [isMobile, setIsMobile] = useState(false)
     const [youthInfo, setYouthInfo] = useState<null | YouthInfo>(null)
+    const [isLogged, setIsLogged] = useState(false)
     
    
 
     useEffect(() => {
+
+        isUserLoggedIn(setIsLogged)
         getYouthInfo().then((info) => {
             setYouthInfo(info)
         })
