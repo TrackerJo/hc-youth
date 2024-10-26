@@ -12,7 +12,7 @@
   
   .questions-section .questions {
     display: flex;
-    justify-content: space-around;
+    justify-content: normal;
     /* align-items: center; */
     flex-direction: row;
     padding: 20px;

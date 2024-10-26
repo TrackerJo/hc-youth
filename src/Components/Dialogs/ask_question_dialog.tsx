@@ -11,7 +11,6 @@ function AskQuestionDialog({onClose, dialogRef}: AskQuestionDialogProps) {
         <dialog ref={dialogRef} className="ask-question-dialog">
             <div className="ask-question-div">
                 <h2>Ask a question</h2>
-                <label htmlFor="question">Question:</label>
                 <input type="text" id="question" name="question" value={question} onChange={(e) => {
                     setQuestion(e.target.value);
                 }}/>

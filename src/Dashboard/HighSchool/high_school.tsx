@@ -53,6 +53,7 @@ function App(){
         <>
             {!isMobile && <DashboardHeader />}
             <div className='content'>
+                <h1>High School</h1>
                 <ManageNewsletterSection type='HighSchool' pastNewsletters={highSchoolInfo?.pastNewsletters ?? []} subscribers={highSchoolInfo?.subscribers ?? []} newsletter={highSchoolInfo?.newsletter ?? {title: '', image: '', body:'', date: new Date()}} updateNewsletter={(newsletter) => {
                     setHighSchoolInfo((prev) => {
                         if (prev) {

@@ -35,12 +35,17 @@
    
   
     .title-section {
-      height: 300px !important;
+      height: 200px !important;
     }
   
+    .title-div h2{
+      font-size: 2rem !important;
+    }
+
     .title-div p{
       margin-top: -20px !important;
       padding-bottom: 20px !important;
+      font-size: 0.8rem !important;
     }
   
     

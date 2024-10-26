@@ -12,7 +12,6 @@
   .where-section {
     background-color: white;
     color: var(--primary);
-    padding: 20px;
     text-align: center;
     display: flex;
     justify-content: space-around;
@@ -22,7 +21,11 @@
   }
 
   @media only screen and (max-width: 768px) {
-   
+    
+    .where-section{
+      flex-direction: column !important;
+      padding: 0px !important;
+    }
   
     .where-section iframe {
       width: 100% !important;

@@ -11,7 +11,7 @@ function AddPrayerRequestDialog({onClose, dialogRef}: AddPrayerRequestDialogProp
         <dialog ref={dialogRef} className="add-prayer-request-dialog">
             <div className="add-prayer-request-div">
                 <h2>Add prayer request</h2>
-                <label htmlFor="question">Prayer Request:</label>
+
                 <input type="text" id="question" name="question" value={prayerRequest} onChange={(e) => {
                     setPrayerRequest(e.target.value);
                 }}/>

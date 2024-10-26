@@ -6,7 +6,6 @@ function NewsletterTile({newsletter}: NewsletterTileProps){
         <div className='newsletter-tile'>
           <h3>{newsletter.title}</h3>
           <p>{newsletter.date.toDateString()}</p>
-            <p>{newsletter.body}</p>
             <button onClick={() => {
                 //open newsletter.link in new tab
                 window.open(newsletter.link, "_blank")

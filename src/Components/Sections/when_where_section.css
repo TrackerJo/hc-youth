@@ -15,6 +15,7 @@
 
     .when-where-section{
       flex-direction: column !important;
+      gap:0px !important;
     }
     
   }

@@ -15,7 +15,8 @@ export function getCalendarEvents(calendarId: string): Promise<CalendarEvent[]> 
                 type: "",
                 eventId: item.id,
                 calendarId: calendarId,
-                eventLink: item.htmlLink
+                eventLink: item.htmlLink,
+                location: item.location
             }
         }
         )

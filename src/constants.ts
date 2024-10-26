@@ -18,6 +18,7 @@ export type CalendarEvent = {
     eventId: string;
     calendarId: string;
     eventLink: string;
+    location: string;
 }
 
 export type CalendarEventTileProps = {  
