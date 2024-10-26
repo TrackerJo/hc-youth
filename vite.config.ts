@@ -24,6 +24,10 @@ export default defineConfig({
         middle_school: resolve(root, 'MiddleSchool/index.html'),
         high_school: resolve(root, 'HighSchool/index.html'),
         young_adults: resolve(root, 'YoungAdults/index.html'),
+        dashboard: resolve(root, 'Dashboard/index.html'),
+        high_school_dashboard: resolve(root, 'Dashboard/HighSchool/index.html'),
+        middle_school_dashboard: resolve(root, 'Dashboard/MiddleSchool/index.html'),
+        young_adults_dashboard: resolve(root, 'Dashboard/YoungAdults/index.html'),
       }
     }
   }

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import './header.css'
-import Logo from '../assets/logo.png'
-import Dropdown from "./dropdown";
+import './dashboard_header.css'
+import Logo from '../../assets/logo.png'
+import Dropdown from "../dropdown";
 
 
-function Header() {
+function DashboardHeader() {
     const [isSticky, setSticky] = useState(false);
     const headerRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -21,30 +21,29 @@ function Header() {
     }}, [])    
 
     return (
-        <div ref={headerRef} className={"header " + (isSticky ? "sticky" : "")} id="myHeader">
+        <div ref={headerRef} className={"dashboard-header " + (isSticky ? "sticky" : "")} id="myHeader">
             <div className="header-left" onClick={() => {
-                window.location.href = "/hc-youth/"
+                window.location.href = "/hc-youth/Dashboard/"
             }}>
                 <img src={Logo} alt="" />
-                <h2>Holy Cross Youth</h2>
+                <h2>Holy Cross Youth Dashboard</h2>
             </div>
             <div className="header-right">
                 <Dropdown title="Middle School" onClick={() => {
 
-                    window.location.href = "/hc-youth/MiddleSchool/"
-                }} links={[
-                    
-                ]}/>
+                    window.location.href = "/hc-youth/Dashboard/MiddleSchool/"
+                }} links={[]}/>
                 <Dropdown title="High School" onClick={() => {
-                    window.location.href = "/hc-youth/HighSchool/"
+                    window.location.href = "/hc-youth/Dashboard/HighSchool/"
                 }} links={[]}/>
                 <Dropdown title="Young Adults" onClick={() => {
-                    window.location.href = "/hc-youth/YoungAdults/"
+                    window.location.href = "/hc-youth/Dashboard/YoungAdults/"
                 }}  links={[]}/>
+                
             </div>
             
         </div>
     )
 }
 
-export default Header
+export default DashboardHeader

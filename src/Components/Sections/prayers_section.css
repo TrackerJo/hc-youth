@@ -13,21 +13,21 @@
   
     .prayers-section {
       overflow: hidden !important;
-      height: 450px;
+      height: 450px !important;
     }
 
     .prayers-section button {
-      width: 100px;
-      height: 50px;
-      font-size: 12px;
+      width: 100px !important;
+      height: 50px !important;
+      font-size: 12px !important;
     }
     
   }
 
   .prayers-section button {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute !important;
+    bottom: 10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 

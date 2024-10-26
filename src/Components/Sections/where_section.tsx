@@ -2,7 +2,7 @@ import "./where_section.css";
 
 function WhereSection() {
     return (
-        <div className='where-section'>
+        <div className='where-section' id="where">
          
             
             <h2>Where</h2>

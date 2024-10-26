@@ -7,7 +7,7 @@ function NewsletterSection({type}: NewsletterSectionProps) {
     const emailRef = useRef<HTMLInputElement>(null)
     const [loading, setLoading] = useState(false)
     return (
-        <div className='newsletter-section'>
+        <div className='newsletter-section' id="newsletter">
         <h2>Newsletter</h2>
         <div className='newsletter'>
             <p>Sign up for our newsletter to stay up to date on all of our events and activities!</p>

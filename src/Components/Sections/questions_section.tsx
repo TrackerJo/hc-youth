@@ -8,7 +8,7 @@ function QuestionsSection({questions} : QuestionSectionProps){
   const dialogRef = useRef<HTMLDialogElement>(null)
     return (
       <>
-        <div className='questions-section'>
+        <div className='questions-section' id="questions">
           <h2>Questions</h2>
           <div className='questions'>
             {questions.map((question) => {

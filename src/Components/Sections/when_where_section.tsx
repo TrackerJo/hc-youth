@@ -3,10 +3,10 @@ import WhenSection from "./when_section";
 import "./when_where_section.css";
 import WhereSection from "./where_section";
 
-function WhenWhereSection({type}: WhereWhenSectionProps) {
+function WhenWhereSection({type, middleSchoolTiming, highSchoolTiming, youngAdultsTiming}: WhereWhenSectionProps) {
     return (
-        <div className='when-where-section'>
-          <WhenSection type={type}/>
+        <div className='when-where-section' id="when-where">
+          <WhenSection type={type} middleSchoolTiming={middleSchoolTiming} highSchoolTiming={highSchoolTiming} youngAdultsTiming={youngAdultsTiming}/>
           <WhereSection />
         </div>
     )

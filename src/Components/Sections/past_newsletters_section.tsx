@@ -6,7 +6,7 @@ import NewsletterTile from "../Tiles/newsletter_tile";
 
 function PastNewslettersSection({newsletters} : PastNewslettersSectionProps){
     return (
-        <div className='past-newsletters-section'>
+        <div className='past-newsletters-section' id="past-newsletters">
           <h2>Past Newsletters</h2>
           <div className='newsletters'>
             {newsletters.map((newsletter) => {

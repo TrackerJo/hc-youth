@@ -4,7 +4,7 @@ import "./title_section.css";
 
 function TitleSection({title, description}: TitleSectionProps) {
     return (
-        <div className='title-section'>
+        <div className='title-section' id="title">
           
           <div className='title-div'>
             <h2>{title}</h2>

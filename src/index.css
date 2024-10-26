@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: light;
   color: black;
   /* create primary color var */
   --primary: #209d50;
@@ -92,6 +92,15 @@ button {
   
 }
 
+input {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 2px solid var(--primary);
+  background-color: white;
+  color: var(--primary);
+}
+
 
 input:focus {
   outline: none;
@@ -146,4 +155,18 @@ button:focus {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 2px solid var(--primary);
+  background-color: white;
+  color: var(--primary);
+}
+
+textarea:focus {
+  outline: none;
 }

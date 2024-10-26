@@ -1,10 +1,10 @@
-import { AllCalendarLink, EventSectionProps, HighSchoolCalendarLink, MiddleSchoolCalendarLink, YoungAdultCalendarLink } from "../../constants";
+import { AllCalendarLink, EventsSectionProps, HighSchoolCalendarLink, MiddleSchoolCalendarLink, YoungAdultCalendarLink } from "../../constants";
 import CalendarEventTile from "../Tiles/calendar_event_tile";
 import "./events_section.css";
 
-function EventSection({events, calendarType} : EventSectionProps) {
+function EventsSection({events, calendarType} : EventsSectionProps) {
     return (
-        <div className='event-section'>
+        <div className='event-section' id="events">
             <h2>Upcoming Events</h2>
             <div className='events'>
                 {events.map((event) => {
@@ -29,4 +29,4 @@ function EventSection({events, calendarType} : EventSectionProps) {
     )
 }
 
-export default EventSection
+export default EventsSection

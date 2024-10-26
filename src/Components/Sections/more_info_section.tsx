@@ -5,7 +5,7 @@ import MoreInfoTile from "../Tiles/more_info_tile";
 
 function MoreInfoSection({moreInfos} : MoreInfoSectionProps){
     return (
-        <div className='more-info-section'>
+        <div className='more-info-section' id="more-info">
           <h2>More Information</h2>
           <div className='more-info'>
             {moreInfos.map((info) => {

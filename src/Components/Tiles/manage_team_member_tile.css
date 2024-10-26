@@ -1,0 +1,83 @@
+.manage-team-tile{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px 0;
+    width: 300px;
+    flex: 0 0 300px;
+    background-color: white;
+    color: var(--primary);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.manage-team-tile h3{
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.manage-team-tile h4{
+    font-size: 1rem;
+    color: var(--primary);
+    margin-top: -10px;
+    font-weight: 400;
+}
+
+.manage-team-tile img{
+     /* width: 100%; */
+     height: 200px;
+     object-fit: cover;
+     border-radius: 10px;
+}
+
+.manage-team-tile input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+    background-color: white;
+    color: var(--primary);
+}
+
+.manage-team-tile textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+    background-color: white;
+    color: var(--primary);
+}
+
+.manage-team-tile .UploadImage {
+    background-color: var(--primary);
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 800;
+
+    border-radius: 5px;
+    width: 200px;
+}
+
+.Upload {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}

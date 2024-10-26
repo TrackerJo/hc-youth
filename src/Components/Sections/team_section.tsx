@@ -6,7 +6,7 @@ import TeamMemberTile from "../Tiles/team_member_tile";
 
 function TeamSection({teamMembers} : TeamSectionProps){
     return (
-        <div className='team-section'>
+        <div className='team-section' id="team">
           <h2>Meet the Team</h2>
           <div className='team'>
             {teamMembers.map((teamMember) => {

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import './bottom_header.css'
-import Logo from '../assets/logo.png'
-import Dropdown from "./dropdown";
-import { BottomHeaderProps } from "../constants";
-import Home from '../assets/home_icon.png'
+
+
+import { BottomHeaderProps } from "../../constants";
+import Home from '../../assets/home_icon.png'
 
 function BottomHeader({location}: BottomHeaderProps) {
     const [isSticky, setSticky] = useState(false);

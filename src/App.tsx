@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react'
 
 
 import './App.css'
-import Header from './Components/header'
+import Header from './Components/Headers/header'
 
 import { getCalendarEvents } from './api'
 import { AllCalendarId, CalendarEvent, HighSchoolCalendarId, MiddleSchoolCalendarId, PrayerRequest, Question, YoungAdultCalendarId, YouthInfo } from './constants'
 
 import PrayerRequestTile from './Components/Tiles/prayer_request_tile'
 import QuestionTile from './Components/Tiles/question_tile'
-import BottomHeader from './Components/bottom_header'
+import BottomHeader from './Components/Headers/bottom_header'
 
 import TitleSection from './Components/Sections/title_section'
 
 
 import WhenWhereSection from './Components/Sections/when_where_section'
-import EventSection from './Components/Sections/event_section'
+import EventsSection from './Components/Sections/events_section'
 import QuestionsSection from './Components/Sections/questions_section'
 import PrayersSection from './Components/Sections/prayers_section'
 import { getYouthInfo } from './Firebase/db'
@@ -145,6 +145,21 @@ function App() {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   useEffect(() => {
+    const url = new URL(window.location.href)
+    const section = url.hash
+    console.log(section)
+    if(section !== ""){
+        const element = document.querySelector(section)
+        if(element){
+          setTimeout(() => {
+            element.scrollIntoView()
+            if(section != "#team" ){
+                // Scroll a little bit less to account for sticky header
+                window.scrollBy(0, -100)
+            }
+        }, 500)
+        }
+    }
     getYouthInfo().then((info) => {
       setYouthInfo(info)
       setQuestions(info.questions)
@@ -306,8 +321,8 @@ function App() {
       {!isMobile && <Header /> }
       <div className="content">
         <TitleSection title="Youth Group" description="Our Youth Groups are designed with students in mind, talking about real issues and applying Scripture in their everyday lives."/>
-        <WhenWhereSection type='All'/>
-        <EventSection events={events} calendarType='All'/>
+        <WhenWhereSection type='All' youngAdultsTiming={youthInfo?.youngAdultTiming ?? {time: "", day: ""}} highSchoolTiming={youthInfo?.highSchoolTiming ?? {time: "", day: ""}} middleSchoolTiming={youthInfo?.middleSchoolTiming ?? {time: "", day: ""}} />
+        <EventsSection events={events} calendarType='All'/>
         <PrayersSection requests={prayerRequests}/>
         <QuestionsSection questions={questions} />
       </div>

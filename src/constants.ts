@@ -39,6 +39,16 @@ export type PrayerRequestTileProps = {
     left: number;
 }
 
+export type ManagePrayerRequestTileProps = {
+    request: PrayerRequest;
+    removeRequest: (request: string) => void;
+}
+
+export type ManagePrayerRequestSectionProps = {
+    requests: PrayerRequest[];
+    removeRequest: (request: string) => void;
+}
+
 export type Question = {
     question: string;
     answer: string;
@@ -54,10 +64,10 @@ export type QuestionSectionProps = {
 }
 
 export type BottomHeaderProps = {
-    location: string;
+    location: "HighSchool" | "MiddleSchool" | "YoungAdults" | "";
 }
 
-export type EventSectionProps = {
+export type EventsSectionProps = {
     events: CalendarEvent[];
     calendarType: "All" | "HighSchool" | "MiddleSchool" | "YoungAdults";
 }
@@ -73,17 +83,22 @@ export type PrayerRequestSectionProps = {
 
 export type WhenSectionProps = {
     type: "All" | "HighSchool" | "MiddleSchool" | "YoungAdults";
+    middleSchoolTiming: Timing;
+    highSchoolTiming: Timing;
+    youngAdultsTiming: Timing;
 }
 
 export type WhereWhenSectionProps = {
     type: "All" | "HighSchool" | "MiddleSchool" | "YoungAdults";
+    middleSchoolTiming: Timing;
+    highSchoolTiming: Timing;
+    youngAdultsTiming: Timing;
 }
 
 export type Newsletter = {
     title: string;
     body: string;
     image: string;
-    type: "HighSchool" | "MiddleSchool" | "YoungAdults";
     date: Date;
 }
 
@@ -119,21 +134,43 @@ export type TeamSectionProps = {
 export type HighSchoolInfo = {
     teamMembers: TeamMember[];
     moreInfo: MoreInfo[];
+    highSchoolTiming: Timing;
+    newsletter: Newsletter;
+    pastNewsletters: Newsletter[];
+    subscribers: string[];
+
 }
 
 export type MiddleSchoolInfo = {
     teamMembers: TeamMember[];
     moreInfo: MoreInfo[];
+    middleSchoolTiming: Timing;
+    newsletter: Newsletter;
+    pastNewsletters: Newsletter[];
+    subscribers: string[];
 }
 
-export type YoungAdultInfo = {
+export type YoungAdultsInfo = {
     teamMembers: TeamMember[];
     moreInfo: MoreInfo[];
+    youngAdultTiming: Timing;
+    newsletter: Newsletter;
+    pastNewsletters: Newsletter[];
+    subscribers: string[];
+}
+
+export type Timing = {
+    day: string;
+    time: string;
 }
 
 export type YouthInfo = {
     questions: Question[];
     prayerRequests: PrayerRequest[];
+    middleSchoolTiming: Timing;
+    highSchoolTiming: Timing;
+    youngAdultTiming: Timing;
+
 }
 
 export type MoreInfo = {
@@ -158,6 +195,82 @@ export type AskQuestionDialogProps = {
 export type AddPrayerRequestDialogProps = {
     dialogRef: React.RefObject<HTMLDialogElement>;
     onClose: () => void;
+}
+
+export type ManageQuestionsSectionProps = {
+    questions: Question[];
+    removeQuestion: (question: string) => void;
+    answerQuestion: (question: string, answer: string) => void;
+}
+
+export type ManageQuestionTileProps = {
+    question: Question;
+    removeQuestion: (question: string) => void;
+    updateQuestion: (question: string, answer: string) => void;
+}
+
+export type ManageWhenSectionProps = {
+    middleSchoolTiming: Timing;
+    highSchoolTiming: Timing;
+    youngAdultsTiming: Timing;
+    setMiddleSchoolTiming: (timing: Timing) => void;
+    setHighSchoolTiming: (timing: Timing) => void;
+    setYoungAdultsTiming: (timing: Timing) => void;
+}
+
+export type ManageMoreInfoSectionProps = {
+    moreInfos: MoreInfo[];
+    removeMoreInfo: (title: string) => void;
+    updateMoreInfo: (oldTitle: string,title: string, body: string, link: string) => void;
+    addMoreInfo: () => void;
+}
+
+export type ManageMoreInfoTileProps = {
+    moreInfo: MoreInfo;
+    removeMoreInfo: (title: string) => void;
+    updateMoreInfo: (oldTitle: string,title: string, body: string, link: string) => void;
+}
+
+export type ManageTeamSectionProps = {
+    type: "HighSchool" | "MiddleSchool" | "YoungAdults";
+    teamMembers: TeamMember[];
+    removeTeamMember: (name: string) => void;
+    updateTeamMember: (oldName: string, teamMember: TeamMember) => void;
+    addTeamMember: () => void;
+}
+
+export type ManageTeamMemberTileProps = {
+    type: "HighSchool" | "MiddleSchool" | "YoungAdults";
+    teamMember: TeamMember;
+    removeTeamMember: (name: string) => void;
+    updateTeamMember: (oldName: string, teamMember: TeamMember) => void;
+}
+
+export type ManageNewsletterSectionProps = {
+    pastNewsletters: Newsletter[];
+    newsletter: Newsletter;
+    subscribers: string[];
+    removeNewsletter: (title: string) => void;
+    updateNewsletter: (newsletter: Newsletter) => void;
+    removeSubscriber: (email: string) => void;
+    type: "HighSchool" | "MiddleSchool" | "YoungAdults";
+
+}
+
+export type ManageNewsletterTileProps = {
+    newsletter: Newsletter;
+    updateNewsletter: (newsletter: Newsletter) => void;
+    type: "HighSchool" | "MiddleSchool" | "YoungAdults";
+}
+
+export type ManageSubscribersTileProps = {
+    email: string;
+    removeSubscriber: (email: string) => void;
+}
+
+export type ManagePastNewsletterTileProps = {
+    newsletter: Newsletter;
+    removeNewsletter: (title: string) => void;
 }
 
 

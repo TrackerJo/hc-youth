@@ -1,0 +1,60 @@
+.manage-more-info-tile {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px 0;
+  width: 300px;
+  flex: 0 0 300px;
+  background-color: white;
+  color: var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.manage-more-info-tile button {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.manage-more-info-tile button:hover {
+  background-color: var(--primary-light);
+}
+
+.manage-more-info-tile textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 2px solid var(--primary);
+}   
+
+.manage-more-info-tile input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+}
+
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .manage-more-info-tile {
+    flex: 0 0 270px !important;
+  }
+}

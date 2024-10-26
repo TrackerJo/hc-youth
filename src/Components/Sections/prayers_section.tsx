@@ -8,7 +8,7 @@ function PrayersSection({requests}: PrayerRequestSectionProps) {
     const addPrayerRequestRef = useRef<HTMLDialogElement>(null)
     return (
         <>
-            <div className='prayers-section'>
+            <div className='prayers-section' id="prayers">
                 <h2>Prayers</h2>
                 <div className="left">
 
