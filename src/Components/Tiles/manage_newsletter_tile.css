@@ -6,7 +6,7 @@
     padding: 20px;
 
     width: 400px;
-    flex: 0 0 400px;
+    /* flex: 0 0 400px; */
     background-color: white;
     color: var(--primary);
     border-radius: 10px;

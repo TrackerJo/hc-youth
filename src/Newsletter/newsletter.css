@@ -1,0 +1,38 @@
+.newsletter {
+    background-color: white;
+    color: var(--primary);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.newsletter h1 {
+    color: var(--primary);
+}
+
+.newsletter h2 {
+    color: var(--primary);
+}
+
+.newsletter h3 {
+    color: var(--primary);
+}
+
+.newsletter p {
+    color: var(--primary);
+}
+
+.newsletter img {
+    width: 80vw;
+}
+
+@media only screen and (max-width: 768px) {
+   .newsletter h1 {
+        font-size: 1.75rem !important;
+   }
+
+}

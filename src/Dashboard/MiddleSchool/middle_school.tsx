@@ -6,7 +6,7 @@ import '../../index.css'
 
 import "./middle_school.css"
 import { MiddleSchoolInfo, MoreInfo } from '../../constants'
-import {  deleteMoreInfo, getMiddleSchoolInfo, removePastNewsletter, removeSubscriber, removeTeamMember, updateMoreInfo, updateNewsletter, updateTeamMember } from '../../Firebase/db'
+import {  clearNewsletter, deleteMoreInfo, getMiddleSchoolInfo, removePastNewsletter, removeSubscriber, removeTeamMember, updateMoreInfo, updateNewsletter, updateTeamMember } from '../../Firebase/db'
 import BottomDashboardHeader from '../../Components/Headers/bottom_dashboard_header'
 import DashboardHeader from '../../Components/Headers/dashboard_header'
 import ManageMoreInfoSection from '../../Components/Sections/manage_more_info_section'
@@ -97,7 +97,7 @@ function App(){
                         }
                         return prev
                     })
-                }}/>
+                }} />
                 
                 <ManageMoreInfoSection moreInfos={moreInfo ?? []} updateMoreInfo={(oldTitle,title, body, link) => {
                     setMoreInfo( (prev) => {

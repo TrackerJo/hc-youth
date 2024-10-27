@@ -84,7 +84,7 @@ function App(){
                 <WhenWhereSection type='YoungAdults' youngAdultsTiming={youngAdultInfo?.youngAdultTiming ?? {time: "", day: ""}} highSchoolTiming={{time: "", day: ""}} middleSchoolTiming={{time: "", day: ""}}/>
                 <EventsSection events={events} calendarType='YoungAdults'/>
                 <NewsletterSection type="YoungAdults"/>
-                <PastNewslettersSection newsletters={youngAdultInfo?.pastNewsletters ?? []}/>
+                <PastNewslettersSection newsletters={youngAdultInfo?.pastNewsletters ?? []} type='YoungAdults'/>
                 <MoreInfoSection moreInfos={youngAdultInfo?.moreInfo ?? []}/>
                 <TeamSection teamMembers={youngAdultInfo?.teamMembers ?? []}/>
 

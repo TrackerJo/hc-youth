@@ -29,7 +29,7 @@ function ManageNewsletterSection({newsletter, updateNewsletter, type, subscriber
                     <h3>Past Newsletters</h3>
                     <div className="past-newsletters-list">
                         {pastNewsletters.map((pastNewsletter, index) => (
-                            <ManagePastNewsletterTile key={index} newsletter={pastNewsletter} removeNewsletter={removeNewsletter} />
+                            <ManagePastNewsletterTile key={index} newsletter={pastNewsletter} removeNewsletter={removeNewsletter} type={type} />
                         ))}
                     </div>
 

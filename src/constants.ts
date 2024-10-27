@@ -101,6 +101,7 @@ export type Newsletter = {
     body: string;
     image: string;
     date: Date;
+    imageId: string;
 }
 
 export type NewsletterSectionProps = {
@@ -109,10 +110,12 @@ export type NewsletterSectionProps = {
 
 export type NewsletterTileProps = {
     newsletter: Newsletter;
+    type: "HighSchool" | "MiddleSchool" | "YoungAdults";
 }
 
 export type PastNewslettersSectionProps = {
     newsletters: Newsletter[];
+    type: "HighSchool" | "MiddleSchool" | "YoungAdults";
 }
 
 export type TeamMember = {
@@ -254,6 +257,7 @@ export type ManageNewsletterSectionProps = {
     removeNewsletter: (title: string) => void;
     updateNewsletter: (newsletter: Newsletter) => void;
     removeSubscriber: (email: string) => void;
+
     type: "HighSchool" | "MiddleSchool" | "YoungAdults";
 
 }
@@ -261,6 +265,7 @@ export type ManageNewsletterSectionProps = {
 export type ManageNewsletterTileProps = {
     newsletter: Newsletter;
     updateNewsletter: (newsletter: Newsletter) => void;
+
     type: "HighSchool" | "MiddleSchool" | "YoungAdults";
 }
 
@@ -272,6 +277,7 @@ export type ManageSubscribersTileProps = {
 export type ManagePastNewsletterTileProps = {
     newsletter: Newsletter;
     removeNewsletter: (title: string) => void;
+    type: "HighSchool" | "MiddleSchool" | "YoungAdults";
 }
 
 

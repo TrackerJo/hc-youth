@@ -30,6 +30,7 @@ export default defineConfig({
         young_adults_dashboard: resolve(root, 'Dashboard/YoungAdults/index.html'),
         login: resolve(root, 'Dashboard/Auth/Login/index.html'),
         signup: resolve(root, 'Dashboard/Auth/Signup/index.html'),
+        newsletter: resolve(root, 'Newsletter/index.html'),
 
 
       }

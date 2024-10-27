@@ -90,7 +90,7 @@ function App(){
                 <WhenWhereSection type='HighSchool' youngAdultsTiming={ {time: "", day: ""}} highSchoolTiming={highSchoolInfo?.highSchoolTiming ?? {time: "", day: ""}} middleSchoolTiming={{time: "", day: ""}}/>
                 <EventsSection events={events} calendarType='HighSchool'/>
                 <NewsletterSection type="HighSchool"/>
-                <PastNewslettersSection newsletters={highSchoolInfo?.pastNewsletters ?? []}/>
+                <PastNewslettersSection newsletters={highSchoolInfo?.pastNewsletters ?? []} type='HighSchool'/>
                 <MoreInfoSection moreInfos={highSchoolInfo?.moreInfo ?? []}/>
                 <TeamSection teamMembers={highSchoolInfo?.teamMembers ?? []}/>
             </div>
