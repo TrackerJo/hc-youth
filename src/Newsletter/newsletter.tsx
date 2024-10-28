@@ -64,7 +64,8 @@ function App(){
                 <p>{newsletter?.body}</p>
                 <img src={newsletter?.image} alt="newsletter"/>
                 <button onClick={() => {
-                    window.location.href = "/hc-youth" + pastPath
+                    //close newsletter tab
+                    window.close()
                 }}>Back</button>
                 
             </div>

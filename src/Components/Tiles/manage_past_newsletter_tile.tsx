@@ -10,7 +10,7 @@ function ManagePastNewsletterTile({ newsletter, removeNewsletter, type }: Manage
             <p>{newsletter.body}</p>
             <button onClick={() =>{
                 localStorage.setItem("newsletter", JSON.stringify(newsletter))
-                window.location.href = `/hc-youth/Newsletter/?path=1Dashboard1${type}1`
+                window.open(window.location.origin + `/hc-youth/Newsletter/?path=1Dashboard1${type}1`, "_blank")
             }} >View</button>
 
             <button onClick={() => {
