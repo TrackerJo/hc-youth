@@ -10,6 +10,7 @@ export async function login(email: string, password: string) : Promise<string>{
             await signInWithEmailAndPassword(auth, email, password);
             console.log(auth.currentUser);
             localStorage.setItem("userId", auth.currentUser!.uid!);
+            localStorage.setItem("isAdmin", "true");
             return "Success";
         } catch (e){
             const errorCode = e.code;
@@ -44,7 +45,7 @@ export async function register(email: string, password: string, accessCode: stri
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             localStorage.setItem("userId", auth.currentUser!.uid!);
-
+            localStorage.setItem("isAdmin", "true");
 
 
             return "Success";

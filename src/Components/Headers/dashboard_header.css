@@ -1,12 +1,13 @@
 .dashboard-header {
   padding: 10px 16px;
-  background: white;
-  color: #209d50;
+  background: var(--primary);
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
+  z-index: 1000;
   /* add a white green fade, white on left, green on right , have green start fading closer to left edge */
   /* background: linear-gradient(to right, white, #209d50); */
 

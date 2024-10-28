@@ -136,6 +136,16 @@ function App(){
                 
                 
             </div>
+            {isMobile && <div className="home-section"> 
+                <button onClick={() => {
+                    window.location.href = "/hc-youth/"
+                }}>Home</button>
+                <button onClick={() => {
+                    logout()
+                    window.location.href = "/hc-youth/"
+                }}>Logout</button>
+            </div>
+                }
             {isMobile && <div className="mobile-footer"/>}
             {isMobile && <BottomDashboardHeader location='' />}
         </>

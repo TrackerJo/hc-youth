@@ -6,8 +6,13 @@ import Dropdown from "../dropdown";
 
 function Header() {
     const [isSticky, setSticky] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const headerRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
+        const user = localStorage.getItem("isAdmin");
+        if(user === "true"){
+            setIsAdmin(true);
+        }
         window.onscroll = function() {myFunction()};
     
         const sticky = headerRef.current!.offsetTop;
@@ -115,6 +120,9 @@ function Header() {
                         }
                     }
                 ]}/>
+                {isAdmin && <Dropdown title="Dashboard" onClick={() => {
+                    window.location.href = "/hc-youth/Dashboard/"} }  links={[]}/>
+                }
                 
             </div>
             

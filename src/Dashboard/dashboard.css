@@ -1,2 +1,10 @@
+.home-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-
+    gap: 10px;
+    background-color: white;
+    color: var(--primary);
+}

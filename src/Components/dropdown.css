@@ -1,10 +1,10 @@
 .dropbtn {
-    background-color: white;
-    color: var(--primary);
+    background-color: var(--primary);
+    color: white;
     padding: 8px;
     font-size: 16px;
     font-weight: 800;
-    border: 2px solid white;
+    border: 2px solid var(--primary);
     border-radius: 5px;
   }
   
@@ -36,8 +36,8 @@
   
   /* Change color of dropdown links on hover */
   .dropdown-content a:hover {
-    background-color: white;
-    color: var(--primary);
+    background-color: var(--primary);
+    color: white;
     cursor: pointer;
 }
   
@@ -46,9 +46,9 @@
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {
-    color: white;
-    background-color: var(--primary);
-    border: 2px solid var(--primary);
+    color: var(--primary);
+    background-color: white;
+    border: 2px solid white;
   }
 
   .dropbtn:focus {

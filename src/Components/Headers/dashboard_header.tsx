@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import './dashboard_header.css'
 import Logo from '../../assets/logo.png'
 import Dropdown from "../dropdown";
+import { logout } from "../../Firebase/auth";
 
 
 function DashboardHeader() {
@@ -39,6 +40,25 @@ function DashboardHeader() {
                 <Dropdown title="Young Adults" onClick={() => {
                     window.location.href = "/hc-youth/Dashboard/YoungAdults/"
                 }}  links={[]}/>
+                <Dropdown title="More" onClick={() => {
+
+                }}  links={[
+                    {
+                        title: "Home",
+                        onClick: () => {
+                            window.location.href = "/hc-youth/"
+                        }
+                    },
+                    {
+                        title: "Logout",
+                        onClick: () => {
+                            logout()
+                            window.location.href = "/hc-youth/"
+                        }
+                    }
+                ]}/>
+                <br />
+                <br />
                 
             </div>
             

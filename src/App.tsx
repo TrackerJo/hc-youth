@@ -140,11 +140,16 @@ function App() {
   ])
 
   const [youthInfo, setYouthInfo] = useState<YouthInfo | null>(null)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   function randomIntFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   useEffect(() => {
+    const user = localStorage.getItem("isAdmin")
+    if(user === "true"){
+        setIsAdmin(true)
+    }
     const url = new URL(window.location.href)
     const section = url.hash
     console.log(section)
@@ -325,6 +330,12 @@ function App() {
         <EventsSection events={events} calendarType='All'/>
         <PrayersSection requests={prayerRequests}/>
         <QuestionsSection questions={questions} />
+        {isAdmin && isMobile && <div className="admin-section"> 
+          <button onClick={() => {
+            window.location.href = "/hc-youth/Dashboard/"
+          }}>Admin Dashboard</button>
+        </div>}
+
       </div>
       {isMobile && <div className="mobile-footer"/>
       }
