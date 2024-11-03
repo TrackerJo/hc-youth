@@ -31,6 +31,7 @@ export default defineConfig({
         login: resolve(root, 'Dashboard/Auth/Login/index.html'),
         signup: resolve(root, 'Dashboard/Auth/Signup/index.html'),
         newsletter: resolve(root, 'Newsletter/index.html'),
+        dev: resolve(root, 'Dev/index.html'),
 
 
       }

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getFirestore, collection,doc, getDoc, updateDoc, arrayUnion, arrayRemove, getDocs, query, where } from "firebase/firestore";
-import { getFunctions } from "firebase/functions";
+import { getFirestore,doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { getFunctions, httpsCallable } from "firebase/functions";
 import { app } from "./app";
-import { HighSchoolInfo, MiddleSchoolInfo, Newsletter, PrayerRequest, TeamMember, Timing, YoungAdultsInfo, YouthInfo } from "../constants";
+import { HighSchoolInfo, MiddleSchoolInfo, Newsletter, PrayerRequest, TeamMember, Timing, YoungAdultsInfo, YouthInfo, FBImage } from "../constants";
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { get } from "http";
+
 
 
 const functions = getFunctions(app);
@@ -26,6 +26,7 @@ export async function getHighSchoolInfo(): Promise<HighSchoolInfo>{
         return {
             name: member.name,
             image: member.image,
+            imageId: member.imageId,
             role: member.role,
             bio: member.bio,
             email: member.email == "" ? undefined : member.email,
@@ -42,21 +43,33 @@ export async function getHighSchoolInfo(): Promise<HighSchoolInfo>{
     })
     const highSchoolTiming = highSchoolInfoDoc.data()!.highSchoolTiming as Timing;
     const docNewsletter = highSchoolInfoDoc.data()!.newsletter
+    const images: FBImage[] = docNewsletter.images.map((image: any) => {  
+        return {
+            url: image.url,
+            id: image.id
+        } as FBImage
+    })
     const newsletter: Newsletter = {
         title: docNewsletter.title,
-        image: docNewsletter.image,
+        images: images,
         date: docNewsletter.date.toDate(),
-        imageId: docNewsletter.imageId,
-        body: docNewsletter.body
+
+
     }
     const subscribers = highSchoolInfoDoc.data()!.subscribers.map((email: string) => email);
     const pastNewsletters = highSchoolInfoDoc.data()!.pastNewsletters.map((newsletter: any) => {
+        const images: FBImage[] = newsletter.images.map((image: any) => {  
+            return {
+                url: image.url,
+                id: image.id
+            } as FBImage
+        })
         return {
             title: newsletter.title,
-            image: newsletter.image,
+            images: images,
             date: newsletter.date.toDate(),
-            imageId: newsletter.imageId,
-            body: newsletter.body,
+
+
         } as Newsletter
     })
     return {
@@ -78,6 +91,7 @@ export async function getMiddleSchoolInfo(): Promise<MiddleSchoolInfo>{
         return {
             name: member.name,
             image: member.image,
+            imageId: member.imageId,
             role: member.role,
             bio: member.bio,
             email: member.email == "" ? undefined : member.email,
@@ -94,21 +108,32 @@ export async function getMiddleSchoolInfo(): Promise<MiddleSchoolInfo>{
     })
     const middleSchoolTiming = middleSchoolInfoDoc.data()!.middleSchoolTiming as Timing;
     const docNewsletter = middleSchoolInfoDoc.data()!.newsletter
+    const images: FBImage[] = docNewsletter.images.map((image: any) => {  
+        return {
+            url: image.url,
+            id: image.id
+        } as FBImage
+    })
     const newsletter: Newsletter = {
         title: docNewsletter.title,
-        image: docNewsletter.image,
+        images: images,
         date: docNewsletter.date.toDate(),
-        imageId: docNewsletter.imageId,
-        body: docNewsletter.body
+
     }
     const subscribers = middleSchoolInfoDoc.data()!.subscribers;
     const pastNewsletters = middleSchoolInfoDoc.data()!.pastNewsletters.map((newsletter: any) => {
+        const images: FBImage[] = newsletter.images.map((image: any) => {  
+            return {
+                url: image.url,
+                id: image.id
+            } as FBImage
+        })
         return {
             title: newsletter.title,
-            image: newsletter.image,
+            images: images,
             date: newsletter.date.toDate(),
-            imageId: newsletter.imageId,
-            body: newsletter.body,
+
+
         } as Newsletter
     })
     return {
@@ -128,6 +153,7 @@ export async function getYoungAdultsInfo(): Promise<YoungAdultsInfo>{
         return {
             name: member.name,
             image: member.image,
+            imageId: member.imageId,
             role: member.role,
             bio: member.bio,
             email: member.email == "" ? undefined : member.email,
@@ -144,22 +170,34 @@ export async function getYoungAdultsInfo(): Promise<YoungAdultsInfo>{
     })
     const youngAdultTiming = youngAdultInfoDoc.data()!.youngAdultsTiming as Timing;
     const docNewsletter = youngAdultInfoDoc.data()!.newsletter
+    const images: FBImage[] = docNewsletter.images.map((image: any) => {  
+        return {
+            url: image.url,
+            id: image.id
+        } as FBImage
+    })
     const newsletter: Newsletter = {
         title: docNewsletter.title,
-        image: docNewsletter.image,
+        images: images,
         date: docNewsletter.date.toDate(),
-        imageId: docNewsletter.imageId,
-        body: docNewsletter.body
+
+
     }
     const subscribers = youngAdultInfoDoc.data()!.subscribers;
     const pastNewsletters = youngAdultInfoDoc.data()!.pastNewsletters.map((newsletter: any) => {
+        const images: FBImage[] = newsletter.images.map((image: any) => {  
+            return {
+                url: image.url,
+                id: image.id
+            } as FBImage
+        })
         return {
             title: newsletter.title,
-            image: newsletter.image,
+            images: images,
             date: newsletter.date.toDate(),
-            imageId: newsletter.imageId,
 
-            body: newsletter.body,
+
+
         } as Newsletter
     })
     return {
@@ -210,6 +248,7 @@ export async function askQuestion(question: string){
     await updateDoc(infoDoc, {
          questions: arrayUnion({question: question, answer: ""})
     })
+    httpsCallable(functions, "sendQuestionEmail")({question: question})
 }
 
 export async function addPrayerRequest(request: string){
@@ -333,6 +372,7 @@ export async function addTeamMember(type: "HighSchool" | "MiddleSchool" | "Young
             role: teamMember.role,
             bio: teamMember.bio,
             image: teamMember.image,
+            imageId: teamMember.imageId,
             email: teamMember.email ?? "",
             phoneNumber: teamMember.phone ?? ""
         })
@@ -341,22 +381,26 @@ export async function addTeamMember(type: "HighSchool" | "MiddleSchool" | "Young
 
 export async function updateTeamMember(type: "HighSchool" | "MiddleSchool" | "YoungAdults", oldTeamMember: TeamMember, teamMember: TeamMember){
     const infoDoc = doc(db,"youthInfo",type);
+
     await updateDoc(infoDoc, {
         teamMembers: arrayRemove({
             name: oldTeamMember.name,
             role: oldTeamMember.role,
             bio: oldTeamMember.bio,
             image: oldTeamMember.image,
+            imageId: oldTeamMember.imageId,
             email: oldTeamMember.email ?? "",
             phoneNumber: oldTeamMember.phone ?? ""
         })
     });
+
     await updateDoc(infoDoc, {
         teamMembers: arrayUnion({
             name: teamMember.name,
             role: teamMember.role,
             bio: teamMember.bio,
             image: teamMember.image,
+            imageId: oldTeamMember.imageId,
             email: teamMember.email ?? "",
             phoneNumber: teamMember.phone ?? ""
         })
@@ -379,12 +423,13 @@ export async function removeTeamMember(type: "HighSchool" | "MiddleSchool" | "Yo
             role: teamMember.role,
             bio: teamMember.bio,
             image: teamMember.image,
+            imageId: teamMember.imageId,
             email: teamMember.email ?? "",
             phoneNumber: teamMember.phone ?? ""
         })
     })
     //Delete image from storage
-    const storageRef = ref(storage, `${type}/TeamMembers/${teamMember.name.replace(" ", "_")}.${getExtension(teamMember.image, type, "TeamMembers")}`);
+    const storageRef = ref(storage, `${type}/TeamMembers/${teamMember.imageId}.${getExtension(teamMember.image, type, "TeamMembers")}`);
     await deleteObject(storageRef);
 
 }
@@ -401,10 +446,10 @@ export async function updateNewsletter(type: "HighSchool" | "MiddleSchool" | "Yo
     await updateDoc(infoDoc, {
         newsletter: {
             title: newsletter.title,
-            body: newsletter.body,
-            image: newsletter.image,
+            images: newsletter.images,
+
             date: newsletter.date,
-            imageId: newsletter.imageId
+
 
         }
     })
@@ -415,12 +460,16 @@ export async function removePastNewsletter(type: "HighSchool" | "MiddleSchool" |
     await updateDoc(infoDoc, {
         pastNewsletters: arrayRemove({
             title: newsletter.title,
-            body: newsletter.body,
-            image: newsletter.image,
+            images: newsletter.images,
+            date: newsletter.date
+
 
         })
     })
-    await deleteNewsletterImage(type, newsletter);
+    for(const image of newsletter.images){
+
+        await deleteNewsletterImage(type, image);
+    }
 }
 
 export async function removeSubscriber(type: "HighSchool" | "MiddleSchool" | "YoungAdults", email: string){
@@ -435,25 +484,11 @@ export async function checkAccessCode(accessCode: string): Promise<boolean>{
     return accessCodeDoc.exists();
 }
 
-export async function clearNewsletter(type: "HighSchool" | "MiddleSchool" | "YoungAdults", newsletter: Newsletter){
-    const infoDoc = doc(db,"youthInfo",type);
-    await updateDoc(infoDoc, {
-        newsletter: {
-            title: "",
-            body: "",
-            image: "",
-            date: new Date()
-        }
-    })
 
-    //Delete image from storage
-    const storageRef = ref(storage, `${type}/Newsletters/${newsletter.title.replace(" ", "_")}.${getExtension(newsletter.image, type, "Newsletters")}`);
-    await deleteObject(storageRef);
-}
 
-export async function deleteNewsletterImage(type: "HighSchool" | "MiddleSchool" | "YoungAdults",newsletter: Newsletter){
+export async function deleteNewsletterImage(type: "HighSchool" | "MiddleSchool" | "YoungAdults",image: FBImage){
     console.log("Deleting image")
-    console.log(newsletter)
-    const storageRef = ref(storage, `${type}/Newsletters/${newsletter.imageId}.${getExtension(newsletter.image, type, "Newsletters")}`);
+
+    const storageRef = ref(storage, `${type}/Newsletters/${image.id}.${getExtension(image.url, type, "Newsletters")}`);
     await deleteObject(storageRef);
 }

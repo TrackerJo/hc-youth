@@ -96,12 +96,16 @@ export type WhereWhenSectionProps = {
     youngAdultsTiming: Timing;
 }
 
+export type FBImage = {
+    id: string;
+    url: string;
+}
+
 export type Newsletter = {
     title: string;
-    body: string;
-    image: string;
+    images: FBImage[];
     date: Date;
-    imageId: string;
+
 }
 
 export type NewsletterSectionProps = {
@@ -121,6 +125,7 @@ export type PastNewslettersSectionProps = {
 export type TeamMember = {
     name:string;
     image:string;
+    imageId: string;
     role:string;
     bio:string;
     email?: string;
@@ -239,7 +244,7 @@ export type ManageTeamSectionProps = {
     type: "HighSchool" | "MiddleSchool" | "YoungAdults";
     teamMembers: TeamMember[];
     removeTeamMember: (name: string) => void;
-    updateTeamMember: (oldName: string, teamMember: TeamMember) => void;
+    updateTeamMember: (oldName: string, teamMember: TeamMember, isFirst: boolean) => void;
     addTeamMember: () => void;
 }
 
@@ -247,7 +252,7 @@ export type ManageTeamMemberTileProps = {
     type: "HighSchool" | "MiddleSchool" | "YoungAdults";
     teamMember: TeamMember;
     removeTeamMember: (name: string) => void;
-    updateTeamMember: (oldName: string, teamMember: TeamMember) => void;
+    updateTeamMember: (oldName: string, teamMember: TeamMember, isFirst: boolean) => void;
 }
 
 export type ManageNewsletterSectionProps = {

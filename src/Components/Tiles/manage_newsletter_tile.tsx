@@ -9,7 +9,7 @@ function ManageNewsletterTile({newsletter, updateNewsletter, type}: ManageNewsle
     const [needsUpdate, setNeedsUpdate] = useState(false);
     const [uploadedImage, setUploadedImage] = useState(true);
     const [loadingUpload, setLoadingUpload] = useState(false);
-    const [loadingSave, setLoadingSave] = useState(false);
+
 
     const uploadImageRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
@@ -27,79 +27,62 @@ function ManageNewsletterTile({newsletter, updateNewsletter, type}: ManageNewsle
                     });
                 }} />
             </div>
-            {currentNewsletter.image == "" ? <></> : <> 
-            <img src={currentNewsletter.image} alt="" />
+            {currentNewsletter.images.length == 0 ? <></> : <> 
+                <div className="newsletter-images">
+                    {currentNewsletter.images.map((image, index) => {
+                        return <div className="image-container" key={index}>
+                            <img src={image.url} alt="" />
+                            <button onClick={async() => {
+                                const images = currentNewsletter.images.filter((img, i) => i != index);
+                                deleteNewsletterImage(type, image);
+                                setCurrentNewsletter({
+                                    ...currentNewsletter,
+                                    images: images
+                                });
+                                updateNewsletter({
+                                    ...currentNewsletter,
+                                    images: images
+                                });
+                            }}>Remove</button>
+                        </div>
+                    })}
+                </div>
             </>}
-            <div className="info">
-                <label htmlFor="">Body: </label>
-                <textarea value={currentNewsletter.body} onChange={(e) => {
-                    setNeedsUpdate(true);
-                    setCurrentNewsletter({
-                        ...currentNewsletter,
-                        body: e.target.value
-                    });
-                }} />
-            </div>
-            {/* <div className="info">
-                <label htmlFor="">Date: </label>
-                <input type="date" value={currentNewsletter.date.toISOString().slice(0, 10)} onChange={(e) => {
-                    setNeedsUpdate(true);
-                    const cdate = new Date(e.target.value)
-                    cdate.setHours(0, 0, 0, 0)
-                    cdate.setDate(cdate.getDate() + 1)
-                    setCurrentNewsletter({
-                        ...currentNewsletter,
-                        date: cdate
-                    });
-                }} />
-            </div> */}
             <div className="Upload">
                 <label htmlFor="">Image: </label>
                 <input type="file" className="UploadImage" ref={uploadImageRef} onChange={() => {
                     setUploadedImage(false)
                 }}/>
                 {uploadedImage ? <>
-                   {currentNewsletter.image != "" && <button onClick={async () => {
-                        setUploadedImage(false);
-                        await deleteNewsletterImage(type, currentNewsletter)
-                        setCurrentNewsletter({
-                            ...currentNewsletter,
-                            image: "",
-                            imageId: ""
-                        });
-                        updateNewsletter({
-                            ...currentNewsletter,
-                            image: "",
-                            imageId: ""
-                        });
-                    }}>Delete</button>}
-                </> : loadingUpload ? <div className="loader"></div> : <button onClick={async(e) => {
-                   
+                  
+                </> : loadingUpload ? <div className="loader"></div> : <button onClick={async() => {
                     setLoadingUpload(true)
                     //Genereate a unique name for the image using title and milliseconds
                     //replace spaces with underscores
 
                     const name = currentNewsletter.title.replace(/ /g, "_") + Date.now().toString();
-                    //check if other images are uploaded
-                    if(currentNewsletter.image != ""){
-                        //delete the old image
-                        //deleteImage(currentNewsletter.image)
-                       await deleteNewsletterImage(type, currentNewsletter)
-                    }
+                    
 
                     const url = await uploadNewsletterImage(type,uploadImageRef.current!.files![0], name);
+                    const images = currentNewsletter.images;
+                    images.push({
+                        id: name,
+                        url: url
+                    });
                     setCurrentNewsletter({
                         ...currentNewsletter,
-                        image: url,
-                        imageId: name
+                        images: images,
+
                     })
                     updateNewsletter({
                         ...currentNewsletter,
-                        image: url,
-                        imageId: name
+                        images: images,
+
                     });
                     setNeedsUpdate(false);
                     alert("Image uploaded")
+                    uploadImageRef.current!.value = "";
+
                     setUploadedImage(true)
                     setLoadingUpload(false)
 

@@ -6,7 +6,7 @@ import '../../index.css'
 
 import "./young_adults.css"
 import { YoungAdultsInfo, MoreInfo } from '../../constants'
-import {  clearNewsletter, deleteMoreInfo, getYoungAdultsInfo, removePastNewsletter, removeSubscriber, removeTeamMember, updateMoreInfo, updateNewsletter, updateTeamMember } from '../../Firebase/db'
+import {  deleteMoreInfo, getYoungAdultsInfo, removePastNewsletter, removeSubscriber, removeTeamMember, updateMoreInfo, updateNewsletter, updateTeamMember } from '../../Firebase/db'
 import BottomDashboardHeader from '../../Components/Headers/bottom_dashboard_header'
 import DashboardHeader from '../../Components/Headers/dashboard_header'
 import ManageMoreInfoSection from '../../Components/Sections/manage_more_info_section'
@@ -57,7 +57,7 @@ function App(){
             {!isMobile && <DashboardHeader />}
             <div className='content'>
                 <h1>Young Adults</h1>
-                <ManageNewsletterSection type='YoungAdults' pastNewsletters={youngAdultsInfo?.pastNewsletters ?? []} subscribers={youngAdultsInfo?.subscribers ?? []} newsletter={youngAdultsInfo?.newsletter ?? {title: '', image: '', body:'', date: new Date()}} updateNewsletter={(newsletter) => {
+                <ManageNewsletterSection type='YoungAdults' pastNewsletters={youngAdultsInfo?.pastNewsletters ?? []} subscribers={youngAdultsInfo?.subscribers ?? []} newsletter={youngAdultsInfo?.newsletter ?? {title: '', images: [],date: new Date()}} updateNewsletter={(newsletter) => {
                     setYoungAdultsInfo((prev) => {
                         if (prev) {
                             //Update prev.newsletter with newsletter
@@ -166,7 +166,8 @@ function App(){
                                     email: '',
                                     phone: '',
                                     bio: '',
-                                    image: ''
+                                    image: '',
+                                    imageId: ''
                                 }]
                             }
                             
@@ -193,7 +194,7 @@ function App(){
                     })
                 }}
 
-                updateTeamMember={(name, updatedMember) => {
+                updateTeamMember={(name, updatedMember, isFirst) => {
                     setYoungAdultsInfo((prev) => {
                         if (prev) {
                             //Update team member in prev.teamMembers

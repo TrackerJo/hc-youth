@@ -58,15 +58,45 @@ function App(){
     }, [])
     return (
         <>
-            <div className="newsletter">
-                <h1>{newsletter?.title}</h1>
-                <h3>{newsletter?.date.toDateString()}</h3>
-                <p>{newsletter?.body}</p>
-                <img src={newsletter?.image} alt="newsletter"/>
-                <button onClick={() => {
-                    //close newsletter tab
-                    window.close()
-                }}>Back</button>
+            <div className="newsletter-wrapper">
+                <div className='newsletter'>
+
+                    <table className='newsletter-table'>
+
+                        <tr className='newsletter-title'>
+                            <td >
+                                <p>{newsletter?.title}</p>
+                                <p>{newsletter?.date.toLocaleDateString()}</p>
+                            </td>
+                        </tr>
+
+
+                        <tr  className='newsletter-images'>
+                            <td >
+                                {newsletter?.images.map((image, index) => {
+                                    return <img key={index} src={image.url} className='newsletter-image' alt="newsletter" />
+                                })}
+                            </td>
+                        </tr>
+
+
+                        <tr className='newsletter-bottom'>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div className='newsletter-back'>
+                    <button onClick={() => {
+
+                    // go back to previous page
+                    window.location.href = "/hc-youth" + pastPath
+
+
+                    }}>Back</button>
+                </div>
+                
                 
             </div>
         </>

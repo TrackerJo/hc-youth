@@ -29,7 +29,7 @@
 .prayer-requests {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     /* margin-top: 1rem; */
     overflow: auto;
     gap: 10px;

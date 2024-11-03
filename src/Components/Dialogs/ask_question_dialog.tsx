@@ -19,7 +19,11 @@ function AskQuestionDialog({onClose, dialogRef}: AskQuestionDialogProps) {
                     await askQuestion(question);
                     onClose();
                 }}>Submit</button>}
-                <button onClick={onClose}>Cancel</button>    
+                <button onClick={() => {
+                    setLoading(false);
+                    setQuestion("");
+                    onClose();
+                }}>Cancel</button>    
             </div>
            
         </dialog>

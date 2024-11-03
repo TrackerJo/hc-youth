@@ -10,7 +10,7 @@ function NewsletterTile({newsletter, type}: NewsletterTileProps){
                 //open newsletter.link in new tab
                 localStorage.setItem("newsletter", JSON.stringify(newsletter))
                 console.log(window.location)
-                window.open(window.location.origin + `/hc-youth/Newsletter/?path=1${type}1`, "_blank")
+                window.open(window.location.origin + `/hc-youth/Newsletter/?path=1${type}1`, "_self")
             }}>View Newsletter</button>
         </div>
     )

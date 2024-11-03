@@ -6,7 +6,7 @@ import '../../index.css'
 
 import "./middle_school.css"
 import { MiddleSchoolInfo, MoreInfo } from '../../constants'
-import {  clearNewsletter, deleteMoreInfo, getMiddleSchoolInfo, removePastNewsletter, removeSubscriber, removeTeamMember, updateMoreInfo, updateNewsletter, updateTeamMember } from '../../Firebase/db'
+import {  deleteMoreInfo, getMiddleSchoolInfo, removePastNewsletter, removeSubscriber, removeTeamMember, updateMoreInfo, updateNewsletter, updateTeamMember } from '../../Firebase/db'
 import BottomDashboardHeader from '../../Components/Headers/bottom_dashboard_header'
 import DashboardHeader from '../../Components/Headers/dashboard_header'
 import ManageMoreInfoSection from '../../Components/Sections/manage_more_info_section'
@@ -57,7 +57,7 @@ function App(){
             {!isMobile && <DashboardHeader />}
             <div className='content'>
                 <h1>Middle School</h1>
-                <ManageNewsletterSection type='MiddleSchool' pastNewsletters={middleSchoolInfo?.pastNewsletters ?? []} subscribers={middleSchoolInfo?.subscribers ?? []} newsletter={middleSchoolInfo?.newsletter ?? {title: '', image: '', body:'', date: new Date()}} updateNewsletter={(newsletter) => {
+                <ManageNewsletterSection type='MiddleSchool' pastNewsletters={middleSchoolInfo?.pastNewsletters ?? []} subscribers={middleSchoolInfo?.subscribers ?? []} newsletter={middleSchoolInfo?.newsletter ?? {title: '', images: [],date: new Date()}} updateNewsletter={(newsletter) => {
                     setMiddleSchoolInfo((prev) => {
                         if (prev) {
                             //Update prev.newsletter with newsletter
@@ -165,6 +165,7 @@ function App(){
                                     role: '',
                                     email: '',
                                     phone: '',
+                                    imageId: '',
                                     bio: '',
                                     image: ''
                                 }]
@@ -193,7 +194,7 @@ function App(){
                     })
                 }}
 
-                updateTeamMember={(name, updatedMember) => {
+                updateTeamMember={(name, updatedMember, isFirst) => {
                     setMiddleSchoolInfo((prev) => {
                         if (prev) {
                             //Update team member in prev.teamMembers

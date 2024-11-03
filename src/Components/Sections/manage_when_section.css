@@ -1,6 +1,6 @@
 .manage-when-section {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 20px;
@@ -21,7 +21,7 @@
 
 .yg-times {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: row;
     padding: 20px;
     gap: 20px;

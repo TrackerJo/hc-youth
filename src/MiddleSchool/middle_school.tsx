@@ -7,7 +7,7 @@ import Slideshow from '../Components/slideshow'
 
 import "./middle_school.css"
 import CalendarEventTile from '../Components/Tiles/calendar_event_tile'
-import { CalendarEvent, MiddleSchoolCalendarId, MiddleSchoolInfo, Newsletter } from '../constants'
+import { CalendarEvent, MiddleSchoolCalendarId, MiddleSchoolInfo } from '../constants'
 import { getCalendarEvents } from '../api'
 import EventsSection from '../Components/Sections/events_section'
 import NewsletterSection from '../Components/Sections/newsletter_section'

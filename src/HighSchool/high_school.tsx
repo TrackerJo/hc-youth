@@ -7,14 +7,14 @@ import Slideshow from '../Components/slideshow'
 
 import "./high_school.css"
 import CalendarEventTile from '../Components/Tiles/calendar_event_tile'
-import { CalendarEvent, HighSchoolCalendarId, HighSchoolInfo, Newsletter } from '../constants'
+import { CalendarEvent, HighSchoolCalendarId, HighSchoolInfo } from '../constants'
 import { getCalendarEvents } from '../api'
 import EventsSection from '../Components/Sections/events_section'
 import NewsletterSection from '../Components/Sections/newsletter_section'
 import TitleSection from '../Components/Sections/title_section'
 import WhenWhereSection from '../Components/Sections/when_where_section'
 import PastNewslettersSection from '../Components/Sections/past_newsletters_section'
-import { getHighSchoolInfo, getPastNewsletters } from '../Firebase/db'
+import { getHighSchoolInfo } from '../Firebase/db'
 import TeamSection from '../Components/Sections/team_section'
 import MoreInfoSection from '../Components/Sections/more_info_section'
 
