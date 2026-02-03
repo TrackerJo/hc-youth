@@ -14,7 +14,7 @@
   .past-newsletters-section .past-newsletters {
     display: flex;
     justify-content: normal;
-    /* align-items: center; */
+    align-items: center;
     flex-direction: row;
     padding: 20px;
     gap: 20px;
@@ -30,5 +30,9 @@
   
     .past-newsletters {
       justify-content: normal !important;
+      flex-direction: column !important;
+      width: unset !important;
+      align-items: center !important;
+      gap: 0px !important;
     }
 }
